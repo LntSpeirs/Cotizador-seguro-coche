@@ -6,7 +6,8 @@ import Error from "./Error";
 const Formulario = () => {
   /* const { modal, setModal } = useContext(CotizadorContext); */
 
-  const { datos, handleChangeDatos, error, setError } = useCotizador();
+  const { datos, handleChangeDatos, error, setError, cotizarSeguro } =
+    useCotizador();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +20,8 @@ const Formulario = () => {
     //Si pasa la validación eliminamos posibles errores anteriores
     setError("");
 
-    //TODO COTIZAR
+    //COTIZAR
+    cotizarSeguro();
   };
 
   return (
