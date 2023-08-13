@@ -1,13 +1,14 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import { MARCAS, PLANES, YEARS } from "../constants";
-import CotizadorContext from "../context/CotizadorProvider";
+import useCotizador from "../hooks/useCotizador";
 
 const Formulario = () => {
-  const { modal, setModal } = useContext(CotizadorContext);
-  console.log(modal);
+  /* const { modal, setModal } = useContext(CotizadorContext); */
+
+  const { datos, handleChangeDatos } = useCotizador();
+
   return (
     <>
-      <button onClick={() => setModal(true)}>Cambiar modal en context</button>
       <form>
         <div className="my-5">
           <label className="block mb-3 font-bold text-gray-400 uppercase">
@@ -16,6 +17,8 @@ const Formulario = () => {
           <select
             name="marca"
             className="w-full p-3 bg-white border border-gray-200"
+            onChange={(evento) => handleChangeDatos(evento)}
+            value={datos.marca}
           >
             <option value="">Seleccione</option>
             {MARCAS.map((marca) => (
@@ -31,8 +34,10 @@ const Formulario = () => {
             AÑO
           </label>
           <select
-            name="marca"
+            name="year"
             className="w-full p-3 bg-white border border-gray-200"
+            onChange={(evento) => handleChangeDatos(evento)}
+            value={datos.year}
           >
             <option value="">Seleccione</option>
             {YEARS.map((year) => (
@@ -51,7 +56,12 @@ const Formulario = () => {
             {PLANES.map((plan) => (
               <Fragment key={plan.id}>
                 <label>{plan.nombre}</label>
-                <input type="radio" name="plan" value={plan.id} />
+                <input
+                  type="radio"
+                  name="plan"
+                  value={plan.id}
+                  onChange={(evento) => handleChangeDatos(evento)}
+                />
               </Fragment>
             ))}
           </div>
