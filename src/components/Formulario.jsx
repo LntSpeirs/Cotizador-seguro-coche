@@ -1,15 +1,31 @@
 import { Fragment } from "react";
 import { MARCAS, PLANES, YEARS } from "../constants";
 import useCotizador from "../hooks/useCotizador";
+import Error from "./Error";
 
 const Formulario = () => {
   /* const { modal, setModal } = useContext(CotizadorContext); */
 
-  const { datos, handleChangeDatos } = useCotizador();
+  const { datos, handleChangeDatos, error, setError } = useCotizador();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (Object.values(datos).includes("")) {
+      setError("Todos los campos son obligatorios.");
+      return;
+    }
+
+    //Si pasa la validación eliminamos posibles errores anteriores
+    setError("");
+
+    //TODO COTIZAR
+  };
 
   return (
     <>
-      <form>
+      {error && <Error />}
+      <form onSubmit={handleSubmit}>
         <div className="my-5">
           <label className="block mb-3 font-bold text-gray-400 uppercase">
             MARCA
