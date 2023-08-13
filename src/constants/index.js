@@ -13,9 +13,10 @@ export const YEARS = Array.from(
 
 export const PLANES = [
   {
-    id: "1",
+    id: 1,
     nombre: "Básico",
-    descripcion: "Solo se incluyen las características básicas",
   },
-  { id: "2", nombre: "Completo", descripcion: "Se incluye el plan Completo" },
+  { id: 2, 
+    nombre: "Completo" 
+  },
 ];
