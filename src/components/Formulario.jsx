@@ -1,9 +1,13 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { MARCAS, PLANES, YEARS } from "../constants";
+import CotizadorContext from "../context/CotizadorProvider";
 
 const Formulario = () => {
+  const { modal, setModal } = useContext(CotizadorContext);
+  console.log(modal);
   return (
     <>
+      <button onClick={() => setModal(true)}>Cambiar modal en context</button>
       <form>
         <div className="my-5">
           <label className="block mb-3 font-bold text-gray-400 uppercase">
@@ -13,7 +17,7 @@ const Formulario = () => {
             name="marca"
             className="w-full p-3 bg-white border border-gray-200"
           >
-            <option value="">Selecione</option>
+            <option value="">Seleccione</option>
             {MARCAS.map((marca) => (
               <option key={marca.id} value={marca.id}>
                 {marca.nombre}
@@ -30,7 +34,7 @@ const Formulario = () => {
             name="marca"
             className="w-full p-3 bg-white border border-gray-200"
           >
-            <option value="">Selecione</option>
+            <option value="">Seleccione</option>
             {YEARS.map((year) => (
               <option key={year} value={year}>
                 {year}
